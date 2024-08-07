@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="AccountsOverview.ascx.cs" Inherits="WebApplication3.AccountsOverview" %>
+﻿﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="AccountsOverview.ascx.cs" Inherits="WebApplication3.AccountsOverview" %>
 <div class="account-overview-container">
     <asp:DropDownList ID="ddlAccounts" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlAccounts_SelectedIndexChanged"></asp:DropDownList>
     <asp:GridView ID="gvAccountDetails" runat="server" AutoGenerateColumns="true"></asp:GridView>

@@ -119,3 +119,101 @@ body {
     .account-group-overview-container tr:hover {
         background-color: #f1f1f1;
     }
+
+
+.account-header {
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+.account-total {
+    font-weight: bold;
+    text-align: right;
+}
+
+.account-item {
+    border-bottom: 1px solid #ccc;
+    padding: 15px 0;
+}
+
+.account-name {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.account-action {
+    font-size: 0.9rem;
+    color: #007bff;
+    cursor: pointer;
+}
+
+.account-balance {
+    font-size: 1.25rem;
+    text-align: right;
+}
+
+.account-change {
+    color: green;
+    font-size: 0.9rem;
+}
+
+.section-header {
+    background-color: #f8f9fa;
+    padding: 10px 15px;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+.quick-view {
+    font-size: 0.8rem;
+    color: #6c757d;
+}
+
+
+.account-header {
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+.account-total {
+    font-weight: bold;
+    text-align: right;
+}
+
+.account-item {
+    border-bottom: 1px solid #ccc;
+    padding: 15px 0;
+}
+
+.account-name {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.account-action {
+    font-size: 0.9rem;
+    color: #007bff;
+    cursor: pointer;
+}
+
+.account-balance {
+    font-size: 1.25rem;
+    text-align: right;
+}
+
+.account-change {
+    color: green;
+    font-size: 0.9rem;
+}
+
+.section-header {
+    background-color: #f8f9fa;
+    padding: 10px 15px;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+.quick-view {
+    font-size: 0.8rem;
+    color: #6c757d;
+}

@@ -14,7 +14,7 @@ namespace WebApplication3
 {
     public partial class AccountsOverview : System.Web.UI.UserControl
     {
-        private List<Account> accounts;
+        private List<ge_core.Coretypes.Account> accounts;
 
         private List<AccountGroup> accountGroups;
 
@@ -43,19 +43,17 @@ namespace WebApplication3
 
             var acctContext = new ge_core.Context.AccountContext();
 
-            var accts = acctContext.GetAllAccounts();
+            accounts = acctContext.GetAllAccounts();
 
             accountGroups = acctContext.GetAccountGroups();
 
-            accounts = new List<Account>();
+            //foreach (var account in accts)
+            //{
+            //    var acct = new Account { AccountNumber = account.AccountNumber, AccountType = account.AccountType, ADX = account.ADX, Balance = account.Balance };
 
-            foreach (var account in accts)
-            {
-                var acct = new Account { AccountNumber = account.AccountNumber, AccountType = account.AccountType, ADX = account.ADX, Balance = account.Balance };
+            //    accounts.Add(acct);
 
-                accounts.Add(acct);
-
-            }
+            //}
 
             //accounts = new List<Account>
             //{
@@ -91,9 +89,9 @@ namespace WebApplication3
             string selectedAccountNumber = ddlAccounts.SelectedValue;
             if (!string.IsNullOrEmpty(selectedAccountNumber))
             {
-                List<Account> accounts = (List<Account>)Session["Accounts"];
-                Account selectedAccount = accounts.Find(a => a.AccountNumber == selectedAccountNumber);
-                gvAccountDetails.DataSource = new List<Account> { selectedAccount };
+                List<ge_core.Coretypes.Account> accounts = (List<ge_core.Coretypes.Account>)Session["Accounts"];
+                ge_core.Coretypes.Account selectedAccount = accounts.Find(a => a.AccountNumber == selectedAccountNumber);
+                gvAccountDetails.DataSource = new List<ge_core.Coretypes.Account> { selectedAccount };
                 gvAccountDetails.DataBind();
             }
             else
@@ -119,13 +117,137 @@ namespace WebApplication3
                 gvAccounts.DataBind();
             }
         }
-    }
 
-    public class Account
-    {
-        public string AccountNumber { get; set; }
-        public string ADX { get; set; }
-        public decimal Balance { get; set; }
-        public string AccountType { get; set; }
+        //protected void ddlAccounts_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    string selectedAccountNumber = ddlAccounts.SelectedValue;
+        //    if (!string.IsNullOrEmpty(selectedAccountNumber))
+        //    {
+        //        List<ge_core.Coretypes.Account> accounts = (List<ge_core.Coretypes.Account>)Session["Accounts"];
+        //        ge_core.Coretypes.Account selectedAccount = accounts.Find(a => a.AccountNumber == selectedAccountNumber);
+        //        gvAccountDetails.DataSource = new List<ge_core.Coretypes.Account> { selectedAccount };
+        //        gvAccountDetails.DataBind();
+        //    }
+        //    else
+        //    {
+        //        gvAccountDetails.DataSource = null;
+        //        gvAccountDetails.DataBind();
+        //    }
+        //}
+
+        //protected void ddlAccountGroups_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    cardContainer.Controls.Clear();
+        //    if (ddlAccountGroups.SelectedIndex > 0)
+        //    {
+        //        int selectedGroupSeqNum = int.Parse(ddlAccountGroups.SelectedValue);
+        //        List<AccountGroup> accountGroups = (List<AccountGroup>)Session["AccountGroups"];
+        //        AccountGroup selectedGroup = accountGroups.Find(g => g.GroupSequenceNumber == selectedGroupSeqNum);
+
+        //        foreach (var account in selectedGroup.Accounts)
+        //        {
+        //            var cardHtml = $@"
+        //            <div class='card'>
+        //                <div class='card-body'>
+        //                    <h5 class='card-title'>{account.AccountNumber}</h5>
+        //                    <p class='card-text'>Type: {account.AccountType}<br>ADX: {account.ADX}<br>Balance: {account.Balance:C}</p>
+        //                </div>
+        //                <div class='card-footer'>
+        //                    <small class='text-muted'>Account Number: {account.AccountNumber}</small>
+        //                </div>
+        //            </div>";
+        //            var literal = new Literal { Text = cardHtml };
+        //            cardContainer.Controls.Add(literal);
+        //        }
+        //    }
+
+        //}
+
+        //----------------------------------------------------------------------------------
+
+        //private void BindAccountGroupsToDropdown()
+        //{
+        //    ddlAccountGroups.Items.Clear();
+        //    ddlAccountGroups.Items.Add(new ListItem("Select a group", ""));
+        //    ddlAccountGroups.Items.Add(new ListItem("All Accounts", "AllAccounts"));
+        //    ddlAccountGroups.Items.Add(new ListItem("All Account Groups", "AllAccountGroups"));
+
+        //    foreach (var group in accountGroups)
+        //    {
+        //        ddlAccountGroups.Items.Add(new ListItem(group.GroupName, group.GroupSequenceNumber.ToString()));
+        //    }
+        //}
+
+        //protected void ddlAccountGroups_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    cardContainer.Controls.Clear();
+        //    if (ddlAccountGroups.SelectedIndex > 0)
+        //    {
+        //        string selectedValue = ddlAccountGroups.SelectedValue;
+
+        //        if (selectedValue == "AllAccounts")
+        //        {
+        //            //List<ge_core.Coretypes.Account> allAccounts = new List<ge_core.Coretypes.Account>();
+        //            //foreach (var group in accountGroups)
+        //            //{
+        //            //    allAccounts.AddRange(group.Accounts);
+        //            //}
+        //            DisplayAccountsAsCards(null);
+        //        }
+        //        else if (selectedValue == "AllAccountGroups")
+        //        {
+        //            DisplayAllAccountGroups();
+        //        }
+        //        else
+        //        {
+        //            int selectedGroupSeqNum = int.Parse(selectedValue);
+        //            AccountGroup selectedGroup = accountGroups.Find(g => g.GroupSequenceNumber == selectedGroupSeqNum);
+        //            DisplayAccountsAsCards(selectedGroup.Accounts);
+        //        }
+        //    }
+        //}
+
+        //private void DisplayAccountsAsCards(ge_core.Coretypes.Account[] accounts)
+        //{
+        //    var accounts1 = (List<ge_core.Coretypes.Account>)Session["Accounts"];
+        //    foreach (var account in accounts1)
+        //    {
+        //        var cardHtml = $@"
+        //        <div class='card'>
+        //            <div class='card-body'>
+        //                <h5 class='card-title'>{account.AccountNumber}</h5>
+        //                <p class='card-text'>Type: {account.AccountType}<br>ADX: {account.ADX}<br>Balance: {account.Balance:C}</p>
+        //            </div>
+        //            <div class='card-footer'>
+        //                <small class='text-muted'>Account Number: {account.AccountNumber}</small>
+        //            </div>
+        //        </div>";
+        //        var literal = new Literal { Text = cardHtml };
+        //        cardContainer.Controls.Add(literal);
+        //    }
+        //}
+
+        //private void DisplayAllAccountGroups()
+        //{
+        //    List<AccountGroup> accountGroups = (List<AccountGroup>)Session["AccountGroups"];
+        //    foreach (var group in accountGroups)
+        //    {
+        //        foreach (var account in group.Accounts)
+        //        {
+        //            var cardHtml = $@"
+        //            <div class='card'>
+        //                <div class='card-body'>
+        //                    <h5 class='card-title'>{account.AccountNumber}</h5>
+        //                    <p class='card-text'>Type: {account.AccountType}<br>ADX: {account.ADX}<br>Balance: {account.Balance:C}</p>
+        //                </div>
+        //                <div class='card-footer'>
+        //                    <small class='text-muted'>Group: {group.GroupName}<br>Account Number: {account.AccountNumber}</small>
+        //                </div>
+        //            </div>";
+        //            var literal = new Literal { Text = cardHtml };
+        //            cardContainer.Controls.Add(literal);
+        //        }
+        //    }
+        //}
     }
 }

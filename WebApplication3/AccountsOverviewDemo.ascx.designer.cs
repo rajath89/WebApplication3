@@ -11,16 +11,25 @@ namespace WebApplication3
 {
 
 
-    public partial class About
+    public partial class AccountsOverviewDemo
     {
 
         /// <summary>
-        /// AccountsOverviewDemo control.
+        /// accountContainer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::WebApplication3.AccountsOverviewDemo AccountsOverviewDemo;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl accountContainer;
+
+        /// <summary>
+        /// totalBalanceContainer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl totalBalanceContainer;
     }
 }

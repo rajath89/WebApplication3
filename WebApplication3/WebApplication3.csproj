@@ -108,6 +108,7 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="AccountsOverview.ascx" />
+    <Content Include="AccountsOverviewDemo.ascx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -197,6 +198,13 @@
     </Compile>
     <Compile Include="AccountsOverview.ascx.designer.cs">
       <DependentUpon>AccountsOverview.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="AccountsOverviewDemo.ascx.cs">
+      <DependentUpon>AccountsOverviewDemo.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AccountsOverviewDemo.ascx.designer.cs">
+      <DependentUpon>AccountsOverviewDemo.ascx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
