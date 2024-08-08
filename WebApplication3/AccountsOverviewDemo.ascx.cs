@@ -1,4 +1,5 @@
-﻿using ge_core.Base;
+﻿using DSP.CalculatorService;
+using ge_core.Base;
 using ge_core.Coretypes;
 using ge_core.DataClass;
 using ge_core.Util;
@@ -13,6 +14,7 @@ namespace WebApplication3
 {
     public partial class AccountsOverviewDemo : System.Web.UI.UserControl
     {
+        private static CalculatorService _calculatorService = new CalculatorService();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -51,8 +53,14 @@ namespace WebApplication3
 
             foreach (var group in accountGroups)
             {
-                var groupBalance = group.Accounts.Sum(a => a.Balance);
-                totalBalance += groupBalance;
+                int groupBalance = 0;
+
+                foreach(var account in group.Accounts)
+                {
+                    groupBalance = _calculatorService.Add(groupBalance, (int)account.Balance);
+                }
+
+                totalBalance = _calculatorService.Add((int)totalBalance,groupBalance);
                 var groupHeaderHtml = $@"
             <div class='section-header'>{group.GroupName} - Total: ${groupBalance:N2}</div>";
 

@@ -44,6 +44,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DSP">
+      <HintPath>..\..\..\..\OneDrive\Desktop\DSP.dll</HintPath>
+    </Reference>
     <Reference Include="ge_core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c18d058a37d1743b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\OneDrive\Desktop\ge_core.dll</HintPath>
